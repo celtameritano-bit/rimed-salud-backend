@@ -28,4 +28,14 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Al final, antes de export default app
+app.get('*', (req, res) => {
+  res.status(404).json({
+    error: 'Ruta no encontrada',
+    path: req.path,
+    method: req.method,
+    message: 'Esta ruta no existe en la API'
+  });
+});
+
 export default app;
